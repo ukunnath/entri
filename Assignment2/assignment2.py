@@ -9,6 +9,16 @@ import getpass
 DATA_FILE = "students.csv"
 LOGIN_CREDENTIALS = {"admin": "admin123", "teacher": "teach123"}
 
+
+class Student:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def validate_int(self):
+        pass
+
+
 # ------------------ UTIL MODULE ------------------
 def validate_int(prompt):
     while True:
