@@ -1,9 +1,9 @@
-# assignment 2.py
+# student_management_system.py
 
 import csv
 import datetime
 import os
-
+import getpass
 
 # ------------------ CONFIG ------------------
 DATA_FILE = "students.csv"
@@ -63,6 +63,7 @@ def login():
     print("\n=== Login ===")
     username = input("Username: ").strip()
     password = input("password: ").strip()
+    #password = getpass.getpass("Password: ")
     if username in LOGIN_CREDENTIALS and LOGIN_CREDENTIALS[username] == password:
         print("Login successful!\n")
         return True
