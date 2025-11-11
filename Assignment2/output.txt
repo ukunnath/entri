@@ -1,0 +1,223 @@
+C:\Users\shafeenausman\AppData\Local\Programs\Python\Python313\python.exe "C:\Users\shafeenausman\Desktop\Usman Studies\DS\entri\Assignment2\assignment2.py"
+
+=== Login ===
+Username: admin
+password: admin123
+Login successful!
+
+======= Student Management System =======
+1. Add Student
+2. View Students
+3. Update Student
+4. Delete Student
+5. Search Student
+6. Top Performing Students
+7. Exit
+Enter your choice: 2
+
+--- Student Records ---
+ID: SID20250927174654, Name: rohit, Roll: 2311, Age: 21, Dept: CSE, Marks: 54, Entry Time: 2025-09-27 17:47:15
+
+======= Student Management System =======
+1. Add Student
+2. View Students
+3. Update Student
+4. Delete Student
+5. Search Student
+6. Top Performing Students
+7. Exit
+Enter your choice: 1
+
+--- Add New Student ---
+Enter Name: usman
+Enter Roll Number: 873
+Enter Age: 30
+Enter Department: cse
+Enter Marks: 78
+Student added successfully.
+
+======= Student Management System =======
+1. Add Student
+2. View Students
+3. Update Student
+4. Delete Student
+5. Search Student
+6. Top Performing Students
+7. Exit
+Enter your choice: 1
+
+--- Add New Student ---
+Enter Name: ravi
+Enter Roll Number: 9089
+Enter Age: 29
+Enter Department: it
+Enter Marks: 90
+Student added successfully.
+
+======= Student Management System =======
+1. Add Student
+2. View Students
+3. Update Student
+4. Delete Student
+5. Search Student
+6. Top Performing Students
+7. Exit
+Enter your choice: 2
+
+--- Student Records ---
+ID: SID20250927174654, Name: rohit, Roll: 2311, Age: 21, Dept: CSE, Marks: 54, Entry Time: 2025-09-27 17:47:15
+ID: SID20251111185245, Name: usman, Roll: 873, Age: 30, Dept: cse, Marks: 78, Entry Time: 2025-11-11 18:53:02
+ID: SID20251111185307, Name: ravi, Roll: 9089, Age: 29, Dept: it, Marks: 90, Entry Time: 2025-11-11 18:53:36
+
+======= Student Management System =======
+1. Add Student
+2. View Students
+3. Update Student
+4. Delete Student
+5. Search Student
+6. Top Performing Students
+7. Exit
+Enter your choice: 3
+
+--- Update Student ---
+Enter Roll Number to update: 873
+Enter new details (leave blank to keep current value):
+Name [usman]:
+Age [30]:
+Department [cse]:
+Marks [78]: 88
+Student record updated.
+
+======= Student Management System =======
+1. Add Student
+2. View Students
+3. Update Student
+4. Delete Student
+5. Search Student
+6. Top Performing Students
+7. Exit
+Enter your choice: d
+Invalid choice. Please try again.
+
+======= Student Management System =======
+1. Add Student
+2. View Students
+3. Update Student
+4. Delete Student
+5. Search Student
+6. Top Performing Students
+7. Exit
+Enter your choice: 4
+
+--- Delete Student ---
+Enter Roll Number to delete: 2321
+Student not found.
+
+======= Student Management System =======
+1. Add Student
+2. View Students
+3. Update Student
+4. Delete Student
+5. Search Student
+6. Top Performing Students
+7. Exit
+Enter your choice: 5
+
+--- Search Student ---
+Search by Name or Department: 2321
+No matching records found.
+
+======= Student Management System =======
+1. Add Student
+2. View Students
+3. Update Student
+4. Delete Student
+5. Search Student
+6. Top Performing Students
+7. Exit
+Enter your choice: 5
+
+--- Search Student ---
+Search by Name or Department: 9089
+No matching records found.
+
+======= Student Management System =======
+1. Add Student
+2. View Students
+3. Update Student
+4. Delete Student
+5. Search Student
+6. Top Performing Students
+7. Exit
+Enter your choice:
+2
+Invalid choice. Please try again.
+
+======= Student Management System =======
+1. Add Student
+2. View Students
+3. Update Student
+4. Delete Student
+5. Search Student
+6. Top Performing Students
+7. Exit
+Enter your choice:
+--- Student Records ---
+ID: SID20250927174654, Name: rohit, Roll: 2311, Age: 21, Dept: CSE, Marks: 54, Entry Time: 2025-09-27 17:47:15
+ID: SID20251111185245, Name: usman, Roll: 873, Age: 30, Dept: cse, Marks: 88, Entry Time: 2025-11-11 18:53:02
+ID: SID20251111185307, Name: ravi, Roll: 9089, Age: 29, Dept: it, Marks: 90, Entry Time: 2025-11-11 18:53:36
+
+======= Student Management System =======
+1. Add Student
+2. View Students
+3. Update Student
+4. Delete Student
+5. Search Student
+6. Top Performing Students
+7. Exit
+Enter your choice: 5
+
+--- Search Student ---
+Search by Name or Department: 873
+No matching records found.
+
+======= Student Management System =======
+1. Add Student
+2. View Students
+3. Update Student
+4. Delete Student
+5. Search Student
+6. Top Performing Students
+7. Exit
+Enter your choice: 5
+
+--- Search Student ---
+Search by Name or Department: ravi
+ID: SID20251111185307, Name: ravi, Roll: 9089, Age: 29, Dept: it, Marks: 90, Entry Time: 2025-11-11 18:53:36
+======= Student Management System =======
+1. Add Student
+2. View Students
+3. Update Student
+4. Delete Student
+5. Search Student
+6. Top Performing Students
+7. Exit
+Enter your choice: 6
+
+--- Top Performing Students ---
+ID: SID20251111185307, Name: ravi, Roll: 9089, Age: 29, Dept: it, Marks: 90, Entry Time: 2025-11-11 18:53:36
+ID: SID20251111185245, Name: usman, Roll: 873, Age: 30, Dept: cse, Marks: 88, Entry Time: 2025-11-11 18:53:02
+ID: SID20250927174654, Name: rohit, Roll: 2311, Age: 21, Dept: CSE, Marks: 54, Entry Time: 2025-09-27 17:47:15
+======= Student Management System =======
+1. Add Student
+2. View Students
+3. Update Student
+4. Delete Student
+5. Search Student
+6. Top Performing Students
+7. Exit
+Enter your choice: 7
+Exiting system. Goodbye!
+
+
+Process finished with exit code 0
