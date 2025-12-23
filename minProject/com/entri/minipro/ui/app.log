@@ -1,0 +1,95 @@
+2025-12-23 15:50:52,655 - WARNING -  * Debugger is active!
+2025-12-23 15:50:52,662 - INFO -  * Debugger PIN: 943-980-289
+2025-12-23 15:51:35,487 - INFO -  * Detected change in 'C:\\Users\\shafeenausman\\Desktop\\Usman Studies\\DS\\entri\\minProject\\com\\entri\\minipro\\ui\\app.py', reloading
+2025-12-23 15:54:59,922 - INFO - Model, threshold, and SHAP explainer loaded successfully
+2025-12-23 15:54:59,954 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-12-23 15:54:59,954 - INFO - [33mPress CTRL+C to quit[0m
+2025-12-23 15:54:59,956 - INFO -  * Restarting with stat
+2025-12-23 15:55:03,263 - INFO - Model, threshold, and SHAP explainer loaded successfully
+2025-12-23 15:55:03,272 - WARNING -  * Debugger is active!
+2025-12-23 15:55:03,275 - INFO -  * Debugger PIN: 943-980-289
+2025-12-23 15:55:09,539 - INFO - 127.0.0.1 - - [23/Dec/2025 15:55:09] "[31m[1mGET /predict HTTP/1.1[0m" 405 -
+2025-12-23 15:55:16,253 - INFO - 127.0.0.1 - - [23/Dec/2025 15:55:16] "GET / HTTP/1.1" 200 -
+2025-12-23 15:56:22,014 - INFO - Prediction successful: 0.0714
+2025-12-23 15:56:23,220 - ERROR - Prediction failed
+Traceback (most recent call last):
+  File "C:\Users\shafeenausman\Desktop\Usman Studies\DS\entri\minProject\com\entri\minipro\ui\app.py", line 231, in predict
+    logging.info(f"prediction_text: {prediction_text:.4f}")
+                                    ^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unknown format code 'f' for object of type 'str'
+2025-12-23 15:56:23,222 - INFO - 127.0.0.1 - - [23/Dec/2025 15:56:23] "POST /predict HTTP/1.1" 200 -
+2025-12-23 16:19:28,463 - INFO -  * Detected change in 'C:\\Users\\shafeenausman\\Desktop\\Usman Studies\\DS\\entri\\minProject\\com\\entri\\minipro\\ui\\app.py', reloading
+2025-12-23 16:21:38,924 - INFO - Model, threshold, and SHAP explainer loaded successfully
+2025-12-23 16:21:38,950 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-12-23 16:21:38,950 - INFO - [33mPress CTRL+C to quit[0m
+2025-12-23 16:21:38,951 - INFO -  * Restarting with stat
+2025-12-23 16:21:42,792 - INFO - Model, threshold, and SHAP explainer loaded successfully
+2025-12-23 16:21:42,801 - WARNING -  * Debugger is active!
+2025-12-23 16:21:42,804 - INFO -  * Debugger PIN: 943-980-289
+2025-12-23 16:21:48,888 - INFO - 127.0.0.1 - - [23/Dec/2025 16:21:48] "GET / HTTP/1.1" 200 -
+2025-12-23 16:22:53,409 - INFO - Prediction successful: 0.0755
+2025-12-23 16:22:53,736 - ERROR - Prediction failed
+Traceback (most recent call last):
+  File "C:\Users\shafeenausman\Desktop\Usman Studies\DS\entri\minProject\com\entri\minipro\ui\app.py", line 233, in predict
+    logging.info(f"prediction_text: {prediction_text:.4f}")
+                                    ^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unknown format code 'f' for object of type 'str'
+2025-12-23 16:22:53,740 - INFO - 127.0.0.1 - - [23/Dec/2025 16:22:53] "POST /predict HTTP/1.1" 200 -
+2025-12-23 16:23:45,391 - INFO -  * Detected change in 'C:\\Users\\shafeenausman\\Desktop\\Usman Studies\\DS\\entri\\minProject\\com\\entri\\minipro\\ui\\app.py', reloading
+2025-12-23 16:23:46,238 - INFO -  * Restarting with stat
+2025-12-23 16:23:50,830 - INFO - Model, threshold, and SHAP explainer loaded successfully
+2025-12-23 16:23:50,839 - WARNING -  * Debugger is active!
+2025-12-23 16:23:50,841 - INFO -  * Debugger PIN: 943-980-289
+2025-12-23 16:25:15,737 - INFO - Model, threshold, and SHAP explainer loaded successfully
+2025-12-23 16:25:15,762 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-12-23 16:25:15,762 - INFO - [33mPress CTRL+C to quit[0m
+2025-12-23 16:25:15,763 - INFO -  * Restarting with stat
+2025-12-23 16:25:19,574 - INFO - Model, threshold, and SHAP explainer loaded successfully
+2025-12-23 16:25:19,585 - WARNING -  * Debugger is active!
+2025-12-23 16:25:19,587 - INFO -  * Debugger PIN: 943-980-289
+2025-12-23 16:25:24,605 - INFO - 127.0.0.1 - - [23/Dec/2025 16:25:24] "GET / HTTP/1.1" 200 -
+2025-12-23 16:26:47,680 - INFO - Prediction successful: 0.0755
+2025-12-23 16:26:47,924 - INFO - prediction_text: <b>Probability of Default:</b> 7.55%<br><b>Decision:</b> \u2705 No Default
+2025-12-23 16:26:47,925 - INFO - 127.0.0.1 - - [23/Dec/2025 16:26:47] "POST /predict HTTP/1.1" 200 -
+2025-12-23 16:29:45,808 - INFO - Model, threshold, and SHAP explainer loaded successfully
+2025-12-23 16:29:45,830 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-12-23 16:29:45,830 - INFO - [33mPress CTRL+C to quit[0m
+2025-12-23 16:29:45,833 - INFO -  * Restarting with stat
+2025-12-23 16:29:50,613 - INFO - Model, threshold, and SHAP explainer loaded successfully
+2025-12-23 16:29:50,623 - WARNING -  * Debugger is active!
+2025-12-23 16:29:50,625 - INFO -  * Debugger PIN: 943-980-289
+2025-12-23 16:29:50,648 - INFO - 127.0.0.1 - - [23/Dec/2025 16:29:50] "GET / HTTP/1.1" 200 -
+2025-12-23 16:30:52,416 - INFO - Prediction successful: 0.0755
+2025-12-23 16:30:52,716 - INFO - prediction_text: <b>Probability of Default:</b> 7.55%<br><b>Decision:</b> \u2705 No Default
+2025-12-23 16:30:52,718 - INFO - 127.0.0.1 - - [23/Dec/2025 16:30:52] "POST /predict HTTP/1.1" 200 -
+2025-12-23 16:32:18,162 - INFO - Prediction successful: 0.3514
+2025-12-23 16:32:18,370 - INFO - prediction_text: <b>Probability of Default:</b> 35.14%<br><b>Decision:</b> \u274c Default Likely
+2025-12-23 16:32:18,370 - INFO - 127.0.0.1 - - [23/Dec/2025 16:32:18] "POST /predict HTTP/1.1" 200 -
+2025-12-23 18:37:09,451 - INFO - Model, threshold, and SHAP explainer loaded successfully
+2025-12-23 18:37:09,604 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-12-23 18:37:09,604 - INFO - [33mPress CTRL+C to quit[0m
+2025-12-23 18:37:09,608 - INFO -  * Restarting with stat
+2025-12-23 18:37:13,768 - INFO - Model, threshold, and SHAP explainer loaded successfully
+2025-12-23 18:37:13,785 - WARNING -  * Debugger is active!
+2025-12-23 18:37:13,854 - INFO -  * Debugger PIN: 943-980-289
+2025-12-23 18:37:15,435 - INFO - 127.0.0.1 - - [23/Dec/2025 18:37:15] "GET / HTTP/1.1" 200 -
+2025-12-23 18:39:59,946 - INFO - Prediction successful: 0.3819
+2025-12-23 18:39:59,946 - INFO - prediction_text: <b>Probability of Default:</b> 38.19%<br><b>Decision:</b> Default Likely
+2025-12-23 18:39:59,947 - INFO - 127.0.0.1 - - [23/Dec/2025 18:39:59] "POST /predict HTTP/1.1" 200 -
+2025-12-23 18:43:21,798 - INFO - Model, threshold, and SHAP explainer loaded successfully
+2025-12-23 18:43:21,833 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-12-23 18:43:21,833 - INFO - [33mPress CTRL+C to quit[0m
+2025-12-23 18:43:21,835 - INFO -  * Restarting with stat
+2025-12-23 18:43:23,713 - INFO - Model, threshold, and SHAP explainer loaded successfully
+2025-12-23 18:43:23,723 - WARNING -  * Debugger is active!
+2025-12-23 18:43:23,726 - INFO -  * Debugger PIN: 943-980-289
+2025-12-23 18:43:28,340 - INFO - 127.0.0.1 - - [23/Dec/2025 18:43:28] "GET / HTTP/1.1" 200 -
+2025-12-23 18:45:17,643 - INFO - Prediction successful: 0.1894
+2025-12-23 18:45:17,643 - INFO - prediction_text: <b>Probability of Default:</b> 18.94%<br><b>Decision:</b> No Default
+2025-12-23 18:45:17,645 - INFO - 127.0.0.1 - - [23/Dec/2025 18:45:17] "POST /predict HTTP/1.1" 200 -

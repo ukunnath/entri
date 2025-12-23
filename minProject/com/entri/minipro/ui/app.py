@@ -1,73 +1,87 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask import Flask, render_template, request
 import pandas as pd
 import pickle
+import logging
 
-app = Flask(__name__)
-CORS(app)
+try:
+    logging.basicConfig(
+        filename="app.log",
+        level=logging.INFO,
+        format="%(asctime)s - %(levelname)s - %(message)s"
+    )
 
-# Load your trained pipeline (preprocessor + model)
-with open("../model/bank_cc_defaults_model.pkl", "rb") as f:
-    model = pickle.load(f)
+    app = Flask(__name__)
 
-# Prediction threshold
-THRESHOLD = 0.5  # probability > 0.5 -> Not Approved
+    model = pickle.load(open('../model/credit_default_pipeline.pkl', 'rb'))
+    threshold = pickle.load(open('../model/threshold.pkl', 'rb'))
 
-# Features in exact order used during training
-FEATURES_ORDER = [
-    'LIMIT_BAL', 'SEX', 'EDUCATION', 'MARRIAGE', 'AGE', 'PAY_0', 'PAY_2',
-    'PAY_3', 'PAY_4', 'PAY_5', 'PAY_6', 'BILL_AMT1', 'BILL_AMT2',
-    'BILL_AMT3', 'BILL_AMT4', 'BILL_AMT5', 'BILL_AMT6', 'PAY_AMT1',
-    'PAY_AMT2', 'PAY_AMT3', 'PAY_AMT4', 'PAY_AMT5', 'PAY_AMT6',
-    'avg_bill_amount', 'avg_payment_amount'
-]
+    preprocessor = model.named_steps["preprocessor"]
+    gb_model = model.named_steps["model"]
 
-@app.route("/predict", methods=["POST"])
-def predict():
-    try:
-        data = request.get_json()
-
-        # Compute derived features
-        data["avg_bill_amount"] = (
-            float(data["BILL_AMT1"]) + float(data["BILL_AMT2"]) +
-            float(data["BILL_AMT3"]) + float(data["BILL_AMT4"]) +
-            float(data["BILL_AMT5"]) + float(data["BILL_AMT6"])
-        ) / 6.0
-
-        data["avg_payment_amount"] = (
-            float(data["PAY_AMT1"]) + float(data["PAY_AMT2"]) +
-            float(data["PAY_AMT3"]) + float(data["PAY_AMT4"]) +
-            float(data["PAY_AMT5"]) + float(data["PAY_AMT6"])
-        ) / 6.0
-
-        # Convert to DataFrame and reorder columns exactly
-        df = pd.DataFrame([data])
-        df = df[FEATURES_ORDER]
-
-        # Predict probability and apply threshold
-        probability = model.predict_proba(df)[0][1]
-        default_prediction = int(probability > THRESHOLD)
-
-        # Print log to server
-        print("\n--- New Prediction Request ---")
-        print("Input Data:", data)
-        print("Predicted Probability:", round(float(probability), 3))
-        print("Prediction (0=Approved, 1=Not Approved):", default_prediction)
-        print("Threshold Used:", THRESHOLD)
-        print("-----------------------------\n")
-
-        # Return to frontend
-        response = {
-            "default_prediction": default_prediction,
-            "default_probability": round(float(probability), 3),
-            "threshold": THRESHOLD
-        }
-        return jsonify(response), 200
-
-    except Exception as e:
-        print("Error during prediction:", e)
-        return jsonify({"error": str(e)}), 500
+    logging.info("Model, threshold, and SHAP explainer loaded successfully")
 
 
-if __name__ == "__main__":
+    @app.route('/')
+    def home():
+        return render_template('index.html')
+
+
+    @app.route('/predict', methods=['POST'])
+    def predict():
+        try:
+            data = {
+                'LIMIT_BAL': float(request.form['LIMIT_BAL']),
+                'SEX': str(request.form['SEX']),
+                'EDUCATION': str(request.form['EDUCATION']),
+                'MARRIAGE': str(request.form['MARRIAGE']),
+                'AGE': float(request.form['AGE']),
+                'PAY_1': int(request.form['PAY_1']),
+                'PAY_2': int(request.form['PAY_2']),
+                'PAY_3': int(request.form['PAY_3']),
+                'PAY_4': int(request.form['PAY_4']),
+                'PAY_5': int(request.form['PAY_5']),
+                'PAY_6': int(request.form['PAY_6']),
+                'BILL_AMT1': float(request.form['BILL_AMT1']),
+                'BILL_AMT2': float(request.form['BILL_AMT2']),
+                'BILL_AMT3': float(request.form['BILL_AMT3']),
+                'BILL_AMT4': float(request.form['BILL_AMT4']),
+                'BILL_AMT5': float(request.form['BILL_AMT5']),
+                'BILL_AMT6': float(request.form['BILL_AMT6']),
+                'PAY_AMT1': float(request.form['PAY_AMT1']),
+                'PAY_AMT2': float(request.form['PAY_AMT2']),
+                'PAY_AMT3': float(request.form['PAY_AMT3']),
+                'PAY_AMT4': float(request.form['PAY_AMT4']),
+                'PAY_AMT5': float(request.form['PAY_AMT5']),
+                'PAY_AMT6': float(request.form['PAY_AMT6']),
+            }
+
+            df = pd.DataFrame([data])
+
+            # Prediction
+            prob = model.predict_proba(df)[:, 1][0]
+            decision = "Default Likely" if prob > threshold else "No Default"
+
+            prediction_text = (
+                f"<b>Probability of Default:</b> {prob:.2%}<br>"
+                f"<b>Decision:</b> {decision}"
+            )
+
+            logging.info(f"Prediction successful: {prob:.4f}")
+
+            logging.info(f"prediction_text: {prediction_text}")
+
+            return render_template(
+                "index.html",
+                prediction_text=prediction_text,
+                shap_image=True
+            )
+
+        except Exception as e:
+            logging.error("Prediction failed:" + str(e), exc_info=True)
+            return render_template('index.html', prediction_text=str(e))
+
+except Exception as e:
+    logging.error("Prediction failed:" + str(e), exc_info=True)
+
+if __name__ == '__main__':
     app.run(debug=True)

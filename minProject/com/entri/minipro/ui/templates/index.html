@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Credit Card Default Predictor</title>
+
+<link rel="stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+body {
+    background: #f0f2f5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    background: white;
+    width: 95%;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 8px;
+}
+
+input, select {
+    width: 95%;
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.section {
+    margin-top: 25px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+button {
+    margin: 30px auto;
+    display: block;
+    padding: 12px 30px;
+    font-size: 16px;
+    background: #198754;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.result {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.shap-plot {
+    text-align: center;
+    margin-top: 30px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1><u>Credit Card Probability of Default Predictor</u></h1>
+
+<form action="{{ url_for('predict') }}" method="post">
+
+<!-- Basic Info -->
+<table>
+<tr>
+<td>
+<label>Gender</label>
+<select name="SEX" required>
+<option value="male">male</option>
+<option value="female">female</option>
+</select>
+</td>
+
+<td>
+<label>Age</label>
+<input type="number" name="AGE" required>
+</td>
+
+<td>
+<label>Marital Status</label>
+<select name="MARRIAGE" required>
+<option value="single">single</option>
+<option value="married">married</option>
+<option value="others">others</option>
+</select>
+</td>
+
+<td>
+<label>Education</label>
+<select name="EDUCATION" required>
+<option value="high school">high school</option>
+<option value="graduate school">graduate school</option>
+<option value="university">university</option>
+<option value="others">others</option>
+</select>
+</td>
+</tr>
+</table>
+
+<br>
+
+<label><b>Limit Balance (NT Dollars)</b></label>
+<input type="number" name="LIMIT_BAL" required>
+
+<!-- Repayment Status -->
+<div class="section">Repayment Status</div>
+<table>
+<tr>
+<td>Sept<select name="PAY_1">
+<option>-2</option><option>-1</option><option>0</option>
+<option>1</option><option>2</option><option>3</option>
+<option>4</option><option>5</option><option>6</option><option>7</option><option>8</option>
+</select></td>
+
+<td>Aug<select name="PAY_2">
+<option>-2</option><option>-1</option><option>0</option>
+<option>1</option><option>2</option><option>3</option>
+<option>4</option><option>5</option><option>6</option><option>7</option><option>8</option>
+</select></td>
+
+<td>Jul<select name="PAY_3">
+<option>-2</option><option>-1</option><option>0</option>
+<option>1</option><option>2</option><option>3</option>
+<option>4</option><option>5</option><option>6</option><option>7</option><option>8</option>
+</select></td>
+</tr>
+
+<tr>
+<td>Jun<select name="PAY_4">
+<option>-2</option><option>-1</option><option>0</option>
+<option>1</option><option>2</option><option>3</option>
+<option>4</option><option>5</option><option>6</option><option>7</option><option>8</option>
+</select></td>
+
+<td>May<select name="PAY_5">
+<option>-2</option><option>-1</option><option>0</option>
+<option>1</option><option>2</option><option>3</option>
+<option>4</option><option>5</option><option>6</option><option>7</option><option>8</option>
+</select></td>
+
+<td>Apr<select name="PAY_6">
+<option>-2</option><option>-1</option><option>0</option>
+<option>1</option><option>2</option><option>3</option>
+<option>4</option><option>5</option><option>6</option><option>7</option><option>8</option>
+</select></td>
+</tr>
+</table>
+
+<!-- Bill Amounts -->
+<div class="section">Bill Amounts (NT Dollars)</div>
+<table>
+<tr>
+<td><input name="BILL_AMT1" placeholder="September" required></td>
+<td><input name="BILL_AMT2" placeholder="August" required></td>
+<td><input name="BILL_AMT3" placeholder="July" required></td>
+</tr>
+<tr>
+<td><input name="BILL_AMT4" placeholder="June" required></td>
+<td><input name="BILL_AMT5" placeholder="May" required></td>
+<td><input name="BILL_AMT6" placeholder="April" required></td>
+</tr>
+</table>
+
+<!-- Pay Amounts -->
+<div class="section">Payment Amounts (NT Dollars)</div>
+<table>
+<tr>
+<td><input name="PAY_AMT1" placeholder="September" required></td>
+<td><input name="PAY_AMT2" placeholder="August" required></td>
+<td><input name="PAY_AMT3" placeholder="July" required></td>
+</tr>
+<tr>
+<td><input name="PAY_AMT4" placeholder="June" required></td>
+<td><input name="PAY_AMT5" placeholder="May" required></td>
+<td><input name="PAY_AMT6" placeholder="April" required></td>
+</tr>
+</table>
+
+<button type="submit">Predict</button>
+
+ Prediction Result
+<div class="result">
+    {% if prediction_text %}
+        {{ prediction_text|safe }}
+    {% endif %}
+</div>
+</body>
+</html>
+
+<!--{% if prediction_text %}-->
+<!--<div class="result">{{ prediction_text }}</div>-->
+<!--{% endif %}-->
+
+<!--{% if show_shap %}-->
+<!--<h3 align="center">SHAP Explanation</h3>-->
+<!--<img src="{{ url_for('static', filename='shap.png') }}" width="100%">-->
+<!--{% endif %}-->
+
