@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Credit Card Approval</title>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #141e30, #243b55);
+            font-family: Arial;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 1100px;
+            background: #1f2a38;
+            padding: 35px;
+            border-radius: 14px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.6);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        h3 {
+            margin: 25px 0 15px;
+            text-align: center;
+            color: #00c6ff;
+        }
+
+        /* TOP DETAILS */
+        .top-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+
+        /* MONTHLY ROWS */
+        .cycle-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+
+        input, select {
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            font-size: 14px;
+        }
+
+        input::placeholder {
+            color: #aaa;
+        }
+
+        button {
+            margin-top: 30px;
+            width: 100%;
+            padding: 15px;
+            font-size: 17px;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        /* POPUP */
+        .overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .popup {
+            background: #1f2a38;
+            padding: 30px;
+            width: 380px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .approved { color: #4CAF50; }
+        .rejected { color: #FF5252; }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>💳 Credit Card Approval Prediction</h2>
+
+    <!-- TOP DETAILS -->
+    <div class="top-section">
+        <input id="LIMIT_BAL" placeholder="Credit Limit">
+        <input id="AGE" placeholder="Age">
+
+        <select id="SEX">
+            <option value="">Gender</option>
+            <option value="1">Male</option>
+            <option value="2">Female</option>
+        </select>
+
+        <select id="EDUCATION">
+            <option value="">Education</option>
+            <option value="1">Graduate School</option>
+            <option value="2">University</option>
+            <option value="3">High School</option>
+            <option value="4">Others</option>
+        </select>
+
+        <select id="MARRIAGE">
+            <option value="">Marital Status</option>
+            <option value="1">Married</option>
+            <option value="2">Single</option>
+            <option value="3">Others</option>
+        </select>
+    </div>
+
+    <h3>📅 Monthly Billing & Payment History (6 Months)</h3>
+
+    <!-- 6 MONTH CYCLES -->
+    <div class="cycle-row">
+        <input id="BILL_AMT1" placeholder="Cycle 1 Bill Amount">
+        <input id="PAY_AMT1" placeholder="Cycle 1 Paid Amount">
+        <select id="PAY_0"><option value="">Paid on time?</option><option value="-1">Yes</option><option value="1">No</option></select>
+    </div>
+
+    <div class="cycle-row">
+        <input id="BILL_AMT2" placeholder="Cycle 2 Bill Amount">
+        <input id="PAY_AMT2" placeholder="Cycle 2 Paid Amount">
+        <select id="PAY_2"><option value="">Paid on time?</option><option value="-1">Yes</option><option value="1">No</option></select>
+    </div>
+
+    <div class="cycle-row">
+        <input id="BILL_AMT3" placeholder="Cycle 3 Bill Amount">
+        <input id="PAY_AMT3" placeholder="Cycle 3 Paid Amount">
+        <select id="PAY_3"><option value="">Paid on time?</option><option value="-1">Yes</option><option value="1">No</option></select>
+    </div>
+
+    <div class="cycle-row">
+        <input id="BILL_AMT4" placeholder="Cycle 4 Bill Amount">
+        <input id="PAY_AMT4" placeholder="Cycle 4 Paid Amount">
+        <select id="PAY_4"><option value="">Paid on time?</option><option value="-1">Yes</option><option value="1">No</option></select>
+    </div>
+
+    <div class="cycle-row">
+        <input id="BILL_AMT5" placeholder="Cycle 5 Bill Amount">
+        <input id="PAY_AMT5" placeholder="Cycle 5 Paid Amount">
+        <select id="PAY_5"><option value="">Paid on time?</option><option value="-1">Yes</option><option value="1">No</option></select>
+    </div>
+
+    <div class="cycle-row">
+        <input id="BILL_AMT6" placeholder="Cycle 6 Bill Amount">
+        <input id="PAY_AMT6" placeholder="Cycle 6 Paid Amount">
+        <select id="PAY_6"><option value="">Paid on time?</option><option value="-1">Yes</option><option value="1">No</option></select>
+    </div>
+
+    <button onclick="submitForm()">Predict</button>
+</div>
+
+<!-- POPUP -->
+<div class="overlay" id="overlay">
+    <div class="popup">
+        <h3 id="popupTitle"></h3>
+        <p id="popupText"></p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+</div>
+
+<script>
+function submitForm() {
+    // Validate all inputs
+    const fields = document.querySelectorAll("input, select");
+    for (let f of fields) {
+        if (f.value === "") {
+            alert("Please fill all fields!");
+            f.focus();
+            return;
+        }
+    }
+
+    const data = {
+        LIMIT_BAL: LIMIT_BAL.value,
+        AGE: AGE.value,
+        SEX: SEX.value,
+        EDUCATION: EDUCATION.value,
+        MARRIAGE: MARRIAGE.value,
+
+        BILL_AMT1: BILL_AMT1.value, BILL_AMT2: BILL_AMT2.value,
+        BILL_AMT3: BILL_AMT3.value, BILL_AMT4: BILL_AMT4.value,
+        BILL_AMT5: BILL_AMT5.value, BILL_AMT6: BILL_AMT6.value,
+
+        PAY_AMT1: PAY_AMT1.value, PAY_AMT2: PAY_AMT2.value,
+        PAY_AMT3: PAY_AMT3.value, PAY_AMT4: PAY_AMT4.value,
+        PAY_AMT5: PAY_AMT5.value, PAY_AMT6: PAY_AMT6.value,
+
+        PAY_0: PAY_0.value, PAY_2: PAY_2.value, PAY_3: PAY_3.value,
+        PAY_4: PAY_4.value, PAY_5: PAY_5.value, PAY_6: PAY_6.value
+    };
+
+    fetch("http://127.0.0.1:5000/predict", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+    })
+    .then(r => r.json())
+    .then(res => showPopup(res))
+    .catch(err => alert("Error: " + err));
+}
+
+function showPopup(res) {
+    const title = document.getElementById("popupTitle");
+    const text = document.getElementById("popupText");
+
+    if (res.default_prediction === 0) {
+        title.innerHTML = "🎉 Congratulations!";
+        title.className = "approved";
+        text.innerHTML = `Card Approved<br>Risk Probability: ${res.default_probability}`;
+    } else {
+        title.innerHTML = "❌ Sorry!";
+        title.className = "rejected";
+        text.innerHTML = `Card Not Approved<br>Risk Probability: ${res.default_probability}`;
+    }
+
+    document.getElementById("overlay").style.display = "flex";
+}
+
+function closePopup() {
+    document.getElementById("overlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>
