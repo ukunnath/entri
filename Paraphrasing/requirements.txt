@@ -1,0 +1,21 @@
+
+torch>=2.0.0
+transformers>=4.38.0
+sentencepiece>=0.1.99        # required by T5 tokenizer
+protobuf>=3.20.0             # required by sentencepiece
+
+# NLP utilities
+nltk>=3.8.0                  # BLEU score
+spacy>=3.7.0                 # optional — extended NLP analysis
+pyspellchecker>=0.7.2        # spelling check
+
+# Evaluation metrics
+rouge-score>=0.1.2           # ROUGE metrics
+sentence-transformers>=2.6.0 # semantic similarity
+
+# Grammar checking (requires Java ≥ 8 installed on the system)
+language-tool-python>=2.7.1  # LanguageTool wrapper
+
+# Utilities
+numpy>=1.24.0
+tqdm>=4.66.0

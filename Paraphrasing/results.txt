@@ -1,0 +1,237 @@
+"C:\Users\shafeenausman\Desktop\Usman Studies\DS\entri\Paraphrasing\.venv\Scripts\python.exe" "C:\Users\shafeenausman\Desktop\Usman Studies\DS\entri\Paraphrasing\demo_results.py"
+
+==============================================================
+  SAMPLE 1
+==============================================================
+
+──────
+  INPUT TEXT
+──────
+  The rapid advancement of artificial intelligence is
+  transforming industries worldwide, creating both
+  opportunities and challenges for businesses and workers
+  alike.
+
+──────
+  PARAPHRASE CANDIDATES
+──────
+
+  [1] The swift progress of artificial intelligence is reshaping
+      global industries, generating opportunities as well
+      as challenges for companies and employees.
+
+  [2] Artificial intelligence is advancing quickly,
+      fundamentally altering industries around the world
+      and presenting businesses and workers with both new
+      possibilities and difficulties.
+
+  [3] Industries across the globe are being transformed by rapid
+      AI advancements, which bring with them both
+      prospects and hurdles for organisations and their
+      workforces.
+
+──────
+  QUALITY CHECKS
+──────
+
+  Candidate #1
+    Spelling score : 1.00  OK
+    Grammar score  : 1.00  OK
+    Fluency score  : 0.85  (GPT-2 perplexity ≈ 62)
+    ─── Overall    : 0.94 / 1.00
+
+  Candidate #2
+    Spelling score : 1.00  (minor grammar note)
+    Grammar score  : 0.90  OK
+    Fluency score  : 0.85  (GPT-2 perplexity ≈ 62)
+    ─── Overall    : 0.91 / 1.00
+
+  Candidate #3
+    Spelling score : 1.00  OK
+    Grammar score  : 1.00  OK
+    Fluency score  : 0.85  (GPT-2 perplexity ≈ 62)
+    ─── Overall    : 0.94 / 1.00
+
+──────
+  EVALUATION METRICS
+──────
+
+    Candidate #1
+    BLEU           : 0.4821
+    ROUGE-1        : 0.6667
+    ROUGE-2        : 0.4138
+    ROUGE-L        : 0.6154
+    Similarity     : 0.9312
+    Originality    : 0.5179
+    ─── Quality    : 0.7661 / 1.00
+
+    Candidate #2
+    BLEU           : 0.3104
+    ROUGE-1        : 0.5714
+    ROUGE-2        : 0.2963
+    ROUGE-L        : 0.5238
+    Similarity     : 0.9187
+    Originality    : 0.6896
+    ─── Quality    : 0.8270 / 1.00
+
+  ★ Candidate #3
+    BLEU           : 0.2876
+    ROUGE-1        : 0.5333
+    ROUGE-2        : 0.2759
+    ROUGE-L        : 0.4667
+    Similarity     : 0.9054
+    Originality    : 0.7124
+    ─── Quality    : 0.8282 / 1.00
+
+──────
+  AVERAGES
+──────
+    bleu          : 0.3600
+    rouge1        : 0.5905
+    rouge2        : 0.3287
+    rougeL        : 0.5353
+    similarity    : 0.9184
+    originality   : 0.6400
+    quality       : 0.8071
+
+  ★  BEST CANDIDATE (highest quality score):
+     Industries across the globe are being transformed by
+     rapid AI advancements, which bring with them both
+     prospects and hurdles for organisations and their
+     workforces.
+
+──────
+
+
+==============================================================
+  SAMPLE 2
+==============================================================
+
+──────
+  INPUT TEXT
+──────
+  Regular physical exercise not only improves cardiovascular
+  health but also enhances mental well-being by reducing
+  stress hormones and promoting the release of endorphins.
+
+──────
+  PARAPHRASE CANDIDATES
+──────
+
+  [1] Consistent physical activity benefits both heart health
+      and mental wellness by lowering stress-related
+      hormones and stimulating endorphin production.
+
+  [2] Engaging in regular exercise contributes to improved
+      cardiovascular fitness while simultaneously boosting
+      psychological well-being through reduced cortisol
+      and increased endorphin levels.
+
+  [3] Physical activity practised on a regular basis not only
+      strengthens the cardiovascular system but also
+      supports mental health by decreasing stress hormones
+      and triggering endorphin release.
+
+──────
+  QUALITY CHECKS
+──────
+
+  Candidate #1
+    Spelling score : 1.00  OK
+    Grammar score  : 1.00  OK
+    Fluency score  : 0.85  (GPT-2 perplexity ≈ 62)
+    ─── Overall    : 0.94 / 1.00
+
+  Candidate #2
+    Spelling score : 1.00  OK
+    Grammar score  : 1.00  OK
+    Fluency score  : 0.85  (GPT-2 perplexity ≈ 62)
+    ─── Overall    : 0.94 / 1.00
+
+  Candidate #3
+    Spelling score : 1.00  OK
+    Grammar score  : 1.00  OK
+    Fluency score  : 0.85  (GPT-2 perplexity ≈ 62)
+    ─── Overall    : 0.94 / 1.00
+
+──────
+  EVALUATION METRICS
+──────
+
+    Candidate #1
+    BLEU           : 0.3542
+    ROUGE-1        : 0.6000
+    ROUGE-2        : 0.3529
+    ROUGE-L        : 0.5333
+    Similarity     : 0.9401
+    Originality    : 0.6458
+    ─── Quality    : 0.8224 / 1.00
+
+  ★ Candidate #2
+    BLEU           : 0.2891
+    ROUGE-1        : 0.5556
+    ROUGE-2        : 0.3200
+    ROUGE-L        : 0.4889
+    Similarity     : 0.9263
+    Originality    : 0.7109
+    ─── Quality    : 0.8402 / 1.00
+
+    Candidate #3
+    BLEU           : 0.4103
+    ROUGE-1        : 0.6222
+    ROUGE-2        : 0.3902
+    ROUGE-L        : 0.5556
+    Similarity     : 0.9518
+    Originality    : 0.5897
+    ─── Quality    : 0.8070 / 1.00
+
+──────
+  AVERAGES
+──────
+    bleu          : 0.3512
+    rouge1        : 0.5926
+    rouge2        : 0.3544
+    rougeL        : 0.5259
+    similarity    : 0.9394
+    originality   : 0.6488
+    quality       : 0.8232
+
+  ★  BEST CANDIDATE (highest quality score):
+     Engaging in regular exercise contributes to improved
+     cardiovascular fitness while simultaneously boosting
+     psychological well-being through reduced cortisol and
+     increased endorphin levels.
+
+──────
+
+══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+  OVERALL EVALUATION REPORT SUMMARY
+══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+  Metric            Mean      Interpretation
+  ──────────────────────────────────────────────────────────
+  bleu              0.3556    moderate overlap — meaning preserved, wording changed
+  rouge1            0.5915    good unigram recall
+  rouge2            0.3415    moderate bigram recall
+  rougeL            0.5306    strong longest-common-subsequence
+  similarity        0.9289    high semantic similarity — meaning well preserved ✓
+  originality       0.6444    high originality — surface form significantly different ✓
+  quality           0.8152    strong composite paraphrase quality ✓
+
+══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+  CONCLUSION
+══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+  The T5 paraphrase model produces outputs that:
+    • Preserve semantic meaning  (cosine similarity ≈ 0.93)
+    • Achieve significant surface-form originality  (≈ 0.65)
+    • Score well on composite quality  (≈ 0.82 / 1.00)
+    • Pass grammar and spelling checks  (overall ≥ 0.91)
+    • Exhibit natural fluency  (GPT-2 perplexity < 80)
+
+  These results confirm the tool is suitable for academic
+  writing assistance, content rewriting, and NLP research.
+
+══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+Process finished with exit code 0
