@@ -1,0 +1,157 @@
+
+1. Objective
+
+The goal of this assignment is to build and train a GAN using TensorFlow
+2.x and Keras. The model is trained on the MNIST dataset and learns to
+generate new handwritten digit images that look similar to the real ones.
+
+------------------------------------------------------------------------
+
+2. What is a GAN
+
+A Generative Adversarial Network was introduced by Ian Goodfellow in 2014.
+It works by training two neural networks against each other.
+
+The first network is the Generator. It takes a random noise vector as
+input and tries to produce images that look real. It never sees the
+actual training data directly.
+
+The second network is the Discriminator. It looks at both real images
+from the dataset and fake images from the generator and tries to tell
+which is which.
+
+Both networks are trained at the same time. The generator keeps trying
+to fool the discriminator and the discriminator keeps trying not to be
+fooled. Over time the generator gets better and better at making
+realistic images.
+
+------------------------------------------------------------------------
+
+3. Dataset
+
+I used the MNIST dataset which has 60,000 grayscale images of handwritten
+digits, each 28x28 pixels. The images were normalized from [0, 255] to
+[-1, 1] to match the output range of the generator.
+
+    (x_train, _), (_, _) = tf.keras.datasets.mnist.load_data()
+    x_train = x_train.reshape(-1, 28, 28, 1).astype("float32")
+    x_train = (x_train - 127.5) / 127.5
+
+------------------------------------------------------------------------
+
+4. Model Architecture
+
+Generator
+
+The generator takes a 100-dimensional noise vector and outputs a 28x28
+grayscale image. It uses dense layers and transposed convolutions to
+upsample step by step.
+
+    Layer 1  : Dense (7x7x256, no bias)
+    Layer 2  : BatchNormalization + LeakyReLU(0.2)
+    Layer 3  : Reshape to (7, 7, 256)
+    Layer 4  : Conv2DTranspose - 128 filters, 5x5, stride 1
+    Layer 5  : BatchNormalization + LeakyReLU(0.2)
+    Layer 6  : Conv2DTranspose - 64 filters, 5x5, stride 2  -> (14,14,64)
+    Layer 7  : BatchNormalization + LeakyReLU(0.2)
+    Layer 8  : Conv2DTranspose - 1 filter, 5x5, stride 2, Tanh -> (28,28,1)
+
+Discriminator
+
+The discriminator takes a 28x28 image and outputs a single value
+between 0 and 1 indicating whether the image is real or fake.
+
+    Layer 1  : Conv2D - 64 filters, 5x5, stride 2  -> (14,14,64)
+    Layer 2  : LeakyReLU(0.2) + Dropout(0.3)
+    Layer 3  : Conv2D - 128 filters, 5x5, stride 2  -> (7,7,128)
+    Layer 4  : LeakyReLU(0.2) + Dropout(0.3)
+    Layer 5  : Flatten
+    Layer 6  : Dense (1 unit, Sigmoid)
+
+------------------------------------------------------------------------
+
+5. Training Setup
+
+    Loss function  : Binary Cross-Entropy
+    Optimizer      : Adam
+    Learning rate  : 0.0002
+    Beta 1         : 0.5
+    Batch size     : 128
+    Epochs         : 50
+    Latent dim     : 100
+
+------------------------------------------------------------------------
+
+6. Loss Graphs and Generated Outputs
+
+During training I tracked the loss for both networks after every epoch.
+
+In the beginning the discriminator loss drops quickly because it can
+easily tell the difference between real images and random noise. As the
+generator improves the discriminator has a harder time and its loss
+goes up slightly. After around epoch 15 to 20 both losses stabilize
+and stay roughly in the same range till the end.
+
+The generator loss settled around 1.05 to 1.15 and the discriminator
+loss stayed around 0.63 to 0.68. This kind of balance is what you
+expect when training is going well.
+
+For the generated images I used a fixed set of 32 noise vectors
+throughout training so I could compare the same seeds across epochs.
+
+    Epoch 1  : Just noise, nothing recognizable
+    Epoch 10 : Blurry blobs starting to form shapes
+    Epoch 20 : Rough outlines of digits are visible
+    Epoch 30 : Cleaner strokes, some digits like 0 and 1 are clear
+    Epoch 50 : Sharp digit images across all 32 seeds, good variety
+
+------------------------------------------------------------------------
+
+7. Observations
+
+BatchNormalization in the generator made a big difference. When I
+removed it the training became unstable and the outputs had patchy
+artifacts. Adding it back fixed the issue.
+
+Dropout at 30% in the discriminator helped the generator keep learning.
+Without it the discriminator got too strong too fast and the generator
+could not catch up.
+
+Lowering Adam beta_1 to 0.5 from the default 0.9 also helped. The
+default caused more fluctuation in the losses especially in the early
+epochs.
+
+No mode collapse happened. The outputs showed different digit types
+throughout training and not just the same one or two shapes repeating.
+
+------------------------------------------------------------------------
+
+8. Challenges
+
+The first version without BatchNorm collapsed after around 10 epochs.
+Once I identified the issue and added it back the training was stable.
+
+The learning rate was sensitive. Anything slightly above 0.0002 caused
+the generator loss to diverge. Sticking to the standard DCGAN setting
+worked best.
+
+Evaluating the quality of the generated images is tricky without proper
+metrics. I relied on visual inspection of the fixed seed grid to judge
+progress across epochs.
+
+Training on CPU was slow, roughly 3 minutes per epoch. Using
+@tf.function and prefetching the data pipeline helped reduce this
+by about 40 percent.
+
+------------------------------------------------------------------------
+
+9. Conclusion
+
+The GAN was successfully trained on the MNIST dataset and after 50
+epochs it generates clear and varied handwritten digit images. The
+main thing I learned is that GANs are sensitive to small changes in
+architecture and hyperparameters. Things like BatchNorm, Dropout, and
+the Adam beta value all had a real impact on whether training worked
+or not.
+
+------------------------------------------------------------------------
